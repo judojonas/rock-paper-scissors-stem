@@ -1,5 +1,4 @@
-function check() {
-    
+function check () {
     if (keuze == andere_keuze) {
         basic.showLeds(`
             . . . . .
@@ -47,29 +46,23 @@ function check() {
     } else {
         basic.showString("somthing went wrong")
     }
-    
     keuze = 0
 }
-
-radio.onReceivedNumber(function on_received_number(receivedNumber: number) {
-    
+radio.onReceivedNumber(function (receivedNumber) {
     if (keuze == 0) {
         andere_keuze = receivedNumber
-        while ((0 as any) == (0 as any)) {
+        while (0 == 0) {
             if (!(keuze == 0)) {
                 check()
-                break
+                break;
             }
-            
         }
     } else {
         andere_keuze = receivedNumber
         check()
     }
-    
 })
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
-    
+input.onButtonPressed(Button.B, function () {
     keuze = randint(1, 3)
     if (keuze == 1) {
         basic.showLeds(`
@@ -96,7 +89,6 @@ input.onButtonPressed(Button.B, function on_button_pressed_b() {
             . . . . .
             `)
     }
-    
     radio.sendNumber(keuze)
 })
 let andere_score = 0
@@ -104,7 +96,7 @@ let score = 0
 let andere_keuze = 0
 let keuze = 0
 radio.setGroup(1)
-basic.forever(function on_forever() {
+basic.forever(function () {
     if (score > 4) {
         basic.showLeds(`
             . . . . .
@@ -114,9 +106,7 @@ basic.forever(function on_forever() {
             . . . . .
             `)
     }
-    
     if (andere_score > 4) {
         basic.showIcon(IconNames.Skull)
     }
-    
 })
